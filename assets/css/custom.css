@@ -1,0 +1,20 @@
+.step {
+	display: none;
+}
+
+.step:first-child {
+	display: block;
+}
+
+.is-invalid {
+	color: red;
+	display: block;
+	font-size: 0.8rem;
+	margin-top: 5px;
+}
+
+.error {
+	color: red;
+	font-size: 0.8rem;
+	margin-top: 5px;
+}
