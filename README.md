@@ -1,2 +1,2 @@
 # dom-oas
-Division of Oriental Mindoro - Online Appointment System
+DepED Division of Oriental Mindoro - Online Appointment System
