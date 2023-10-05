@@ -1,5 +1,8 @@
 .DS_Store
 
+Account Info.Text
+doas_db.sql
+
 application/cache/*
 !application/cache/index.html
 
@@ -31,5 +34,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /tests/tests/
 /tests/results/
 
-Account Info.Text
-doas_db.sql
+
