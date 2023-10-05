@@ -1,6 +1,6 @@
 .DS_Store
 
-Account Info.Text
+Account Info.txt
 doas_db.sql
 
 application/cache/*
