@@ -21,10 +21,6 @@ class Search extends CI_Controller
 
     public function index()
     {
-        $this->load->model('my_model');
-        //$this->data['users'] = $this->my_model->getusers();
-
-        $this->load->library('pagination');
 
         $perPage = 10;
         $config['base_url'] = base_url();
@@ -137,6 +133,8 @@ class Search extends CI_Controller
         $data['links'] = $this->pagination->create_links();
 
         $data['usovs'] = $this->Pagination_model->get_usov_data_list($data['limit'], $data['offset'], $search);
+
+        dd($data);
 
         $this->templates('usov/index', $data);
     }

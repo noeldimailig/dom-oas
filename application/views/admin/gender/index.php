@@ -80,8 +80,8 @@
                                         <td><?php echo $count; ?></td>
                                         <td><?php echo $gender['gender']; ?></td>
                                         <td>
-                                            <a class="btn btn-sm btn-secondary <?php echo is_table_referenced('user', ['gender_id' => $gender['gender_id']]); ?>" href="<?php echo site_url('admin/gender/' . $gender['gender_id']); ?>">Update</a>
-                                            <a class="btn btn-sm btn-danger <?php echo is_table_referenced('user', ['gender_id' => $gender['gender_id']]); ?>" href="<?php echo site_url('admin/delgen/' . $gender['gender_id']); ?>">Delete</a>
+                                            <a class="btn btn-sm btn-secondary <?php echo is_table_referenced('gender', ['gender_id' => $gender['gender_id']]); ?>" href="<?php echo site_url('admin/gender/' . $gender['gender_id']); ?>">Update</a>
+                                            <a class="btn btn-sm btn-danger <?php echo is_table_referenced('gender', ['gender_id' => $gender['gender_id']]); ?>" href="<?php echo site_url('admin/delgen/' . $gender['gender_id']); ?>">Delete</a>
                                         </td>
                                     </tr>
                                     <?php $count++; ?>

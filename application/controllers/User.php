@@ -231,7 +231,7 @@ class User extends CI_Controller
 
             if ($this->user_model->update_info($data)) {
                 $this->session->set_flashdata('success', 'Password has been changed successfully. Log in with your new password.');
-                redirect('logout');
+                redirect('user/setting');
             } else {
                 $this->session->set_flashdata('danger', 'Please check the information you provideds');
                 redirect('user/setting');

@@ -107,9 +107,7 @@ class Auth extends CI_Controller
             $this->load->model('Auth_model', 'auth_model');
 
             if ($this->auth_model->insert($data)) {
-                if ($this->send_token($data['email'], $data['token'])) {
-                    redirect('/');
-                }
+                $this->send_verification_link($data['email'], $data['token']);
             } else {
                 $this->session->set_flashdata('danger', 'Please check the details you provided and try again.');
                 $this->signup();
@@ -120,29 +118,22 @@ class Auth extends CI_Controller
         }
     }
 
-    public function send_token($email, $token)
+    public function send_verification_link($email, $token)
     {
-        $config = [
-            'mailtype' => 'html'
-        ];
+        $root_dir = realpath(APPPATH . '../');
+        $template_file = $root_dir . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'email-confirmation.html';
+        $template = file_get_contents($template_file);
 
-        $this->load->library('email');
-        $this->email->initialize($config);
-
-        $this->email->from('no-reply@deped-appointment-system.com', 'DepEd Online Appointment System');
-        $this->email->to($email);
-        $this->email->subject('Email Verification');
-        $message = '<p>Thank you for signing up!</p>';
-        $message .= '<p>Please click the link below to verify your email address:</p>';
-        $message .= '<p><a href="' . base_url() . 'verify/' . $token . '">Verify Email</a></p>';
-        $this->email->message($message);
-
-        if ($this->email->send()) {
+        $search = '{EMAIL_VERIFICATION_LINK}';
+        $replace = base_url() . 'verify/' . $token;
+        $template = str_replace($search, $replace, $template);
+        $this->load->library('email_sender');
+        if ($this->email_sender->send($email, 'Email Confirmation', $template)) {
             $this->session->set_flashdata('success', 'Registration successful. Please check your email for verification.');
-            return true;
+            redirect('/');
         } else {
             $this->session->set_flashdata('error', 'There was an error sending the email. Please try again later.');
-            return false;
+            $this->signup();
         }
     }
 
@@ -243,12 +234,7 @@ class Auth extends CI_Controller
 
             if (!empty($user)) {
                 $user = $this->auth_model->is_user_verified($email);
-
-                if ($this->send_password_reset_link($email, $user->token)) {
-                    redirect('/');
-                } else {
-                    redirect('forgot');
-                }
+                $this->send_password_reset_link($email, $user->token);
             }
         } else {
             redirect('forgot');
@@ -257,35 +243,23 @@ class Auth extends CI_Controller
 
     public function send_password_reset_link($email, $token)
     {
-        $config = [
-            'mailtype' => 'html'
-        ];
-
-        $this->load->library('email');
-        $this->email->initialize($config);
-
-        $this->email->from('no-reply@deped-appointment-system.com', 'DepEd Online Appointment System');
-        $this->email->to($email);
-        $this->email->subject('Password Reset');
-
         $root_dir = realpath(APPPATH . '../');
-        $template_file = $root_dir . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'email-confirmation.html';
+        $template_file = $root_dir . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'password-reset.html';
         $template = file_get_contents($template_file);
 
-        $search = array('{PASSWORD_RESET_LINK}');
-        $replace = array(base_url() . 'newpass/' . $token);
+        $search = ['{PASSWORD_RESET_LINK}', '{EMAIL}'];
+        $replace = [base_url() . 'newpass/' . $token, $email];
         $template = str_replace($search, $replace, $template);
-
-        $this->email->message($template);
-
-        if ($this->email->send()) {
+        $this->load->library('email_sender');
+        if ($this->email_sender->send($email, 'Password Reset Request', $template)) {
             $this->session->set_flashdata('success', 'Forgot password successful. Please check your email for the password reset link.');
-            return true;
+            redirect('/');
         } else {
             $this->session->set_flashdata('error', 'There was an error sending the email. Please try again later.');
-            return false;
+            redirect('forgot');
         }
     }
+
 
     public function logout()
     {

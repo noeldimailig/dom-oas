@@ -31,12 +31,20 @@ function active_link($page)
 	}
 }
 
-function is_table_referenced($table = '', $column = [])
+function is_table_referenced($table, $column = [])
 {
 	$CI = &get_instance();
-
 	$CI->load->database();
-	$result = $CI->db->get_where($table, $column)->num_rows();
+
+	$key = array_keys($column);
+	$value = array_values($column);
+
+	$result = '';
+	if ($table == 'gender' || $table == 'vulnerable_sector') {
+		$result = $CI->db->get_where('user', [$key[0] => $value[0]])->num_rows();
+	} else {
+		$result = $CI->db->get_where('appointment_details', [$key[0] => $value[0]])->num_rows();
+	}
 
 	if ($result > 0) {
 		return 'disabled';
@@ -44,6 +52,26 @@ function is_table_referenced($table = '', $column = [])
 		return '';
 	}
 }
+
+// function is_table_referenced($table = '', $column = [])
+// {
+// 	$CI = &get_instance();
+
+// 	$CI->load->database();
+// 	$CI->db->select('*');
+// 	$CI->db->from('appointment_details');
+
+// 	if ($table == 'gender' || $table == 'vulnerable_sector') {
+// 		$CI->db->join('user', 'appointment_details.user_id = user.user_id');
+// 	}
+// 	$result = $CI->db->get_where($table, $column)->num_rows();
+
+// 	if ($result > 0) {
+// 		return 'disabled';
+// 	} else {
+// 		return '';
+// 	}
+// }
 
 if (!function_exists('passwordhash')) {
 	function passwordhash($password)

@@ -31,7 +31,9 @@
                             <div class="mb-3 col-12">
                                 <label for="usov" class="form-label">Unit, Section, Office, to Visit</label>
                                 <input type="text" class="form-control form-control-sm" id="usov" name="usov" placeholder="Unit, Section, Office, to Visit" <?php echo set_value('usov'); ?> required>
-                                <input type="hidden" name="<?php echo $csrf['name']; ?>" value="<?php echo $csrf['hash']; ?>" required>
+                                <input type="hidden" name="<?php echo $csrf['name'];
+                                                            ?>" value="<?php echo $csrf['hash'];
+                                                                        ?>" required>
                                 <div class="invalid-feedback"><?php echo form_error('usov'); ?></div>
                             </div>
                             <div class="col-12">
@@ -49,7 +51,9 @@
                             <div class="mb-3 col-12">
                                 <label for="usov" class="form-label">Unit, Section, Office, to Visit</label>
                                 <input type="text" class="form-control form-control-sm" id="usov" name="usov" placeholder="Unit, Section, Office, to Visit" <?php echo set_value('usov'); ?> value="<?php echo $usov->usov ?? ''; ?>" required>
-                                <input type="hidden" name="<?php echo $csrf['name']; ?>" value="<?php echo $csrf['hash']; ?>" required>
+                                <input type="hidden" name="<?php echo $csrf['name'];
+                                                            ?>" value="<?php echo $csrf['hash'];
+                                                                        ?>" required>
                                 <input type="hidden" name="usovid" value="<?php echo $usov->usov_id ?? ''; ?>" required>
                                 <div class="invalid-feedback"><?php echo form_error('usov'); ?></div>
                             </div>
@@ -66,17 +70,39 @@
                     <div class="card-header">
                         <h5>Unit, Section, Office to Visits List</h5>
                     </div>
-                    <div class="card-body p-4">
+                    <div class="card-body p-4 pb-0">
+                        <!-- <div class="row g-5">
+                            <div class="col-lg-6">
+                                Showing <?php //echo $offset + 1; 
+                                        ?> to <?php //echo $offset + $number_page; 
+                                                ?> of <?php //echo $allrecords; 
+                                                        ?> entries
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group  is-empty" style="margin:0px !important;">
+                                    <input type="text" id="search" name="search" value="<?php //if (!empty($search)) {
+                                                                                        //echo $search;
+                                                                                        //} 
+                                                                                        ?>" class="form-control" placeholder="Search here...">
+                                    <button type="submit" class="btn btn-primary rounded d-inline-block">
+                                        <i class="bi bi-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-lg-8 col-md-8 col-sm-8 mb-3">
-                            <?php echo form_open(base_url('admin/usov/search/usov')); ?>
+                            <?php //echo form_open(base_url('admin/usov'), ['method' => 'GET']); 
+                            ?>
                             <table class="search_bar">
                                 <tr>
                                     <td>
                                         <div class="form-group  is-empty" style="margin:0px !important;">
-                                            <input id="csrf" type="hidden" name="<?php echo $csrf['name']; ?>" value="<?php echo $csrf['hash']; ?>" required>
-                                            <input type="text" id="search" name="search" value="<?php if (!empty($search)) {
-                                                                                                    echo $search;
-                                                                                                } ?>" class="form-control" placeholder="Search here...">
+                                            <input type="hidden" name="<?php //echo $csrf['name']; 
+                                                                        ?>" value="<?php //echo $csrf['hash']; 
+                                                                                    ?>" required>
+                                            <input type="text" id="search" name="search" value="<?php //if (!empty($search)) {
+                                                                                                //echo $search;
+                                                                                                //} 
+                                                                                                ?>" class="form-control" placeholder="Search here...">
                                         </div>
                                     </td>
                                     <td>
@@ -85,8 +111,9 @@
                                     </td>
                                 </tr>
                             </table>
-                            <?php echo form_close(); ?>
-                        </div>
+                            <?php //echo form_close(); 
+                            ?>
+                        </div> -->
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -116,10 +143,12 @@
                                 <?php } ?>
                             </tbody>
                             <tfoot>
-                                <nav><?php echo $links; ?></nav>
+
                             </tfoot>
                         </table>
                     </div>
+                    <!-- <nav class="py-0 px-4 pb-2 my-0 d-flex align-items-center justify-content-center"><?php //echo $this->pagination->create_links(); 
+                                                                                                            ?></nav> -->
                 </div>
             </div>
         </div>

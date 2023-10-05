@@ -86,13 +86,14 @@
                     <span>Profile</span>
                 </a>
             </li><!-- End Profile Nav -->
-            <li class="nav-item">
-                <a class="nav-link <?php active_link('user/setting'); ?>" href="<?php echo site_url('user/setting'); ?>">
-                    <i class="bi bi-gear"></i>
-                    <span>Settings</span>
-                </a>
-            </li><!-- End Profile Nav -->
+
         <?php } ?>
+        <li class="nav-item">
+            <a class="nav-link <?php active_link('user/setting'); ?>" href="<?php echo site_url('user/setting'); ?>">
+                <i class="bi bi-gear"></i>
+                <span>Settings</span>
+            </a>
+        </li><!-- End Profile Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="<?php echo site_url('logout'); ?>">
                 <i class="bi bi-box-arrow-right"></i>

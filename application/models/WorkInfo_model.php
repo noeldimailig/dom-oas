@@ -211,6 +211,33 @@ class WorkInfo_model extends CI_Model
     #endregion functional divisions
 
     #region usovs
+    public function count_usovs($search)
+    {
+        if (!empty($search)) {
+            $this->db->like('usov', $search);
+        }
+
+        $this->db->select('*');
+        $this->db->from('usov');
+        $this->db->order_by('usov_id', 'ASC');
+        $rs = $this->db->get();
+        return $rs->num_rows();
+    }
+
+    public function get_usovs_with_search($limit, $offset, $search = '')
+    {
+        if (!empty($search)) {
+            $this->db->like('usov', $search);
+        }
+
+        $this->db->select('*');
+        $this->db->from('usov');
+        $this->db->order_by('usov_id', 'ASC');
+        $this->db->limit($limit, $offset);
+        $rs = $this->db->get();
+        return $rs->result_array();
+    }
+
     public function get_usovs()
     {
         $result = $this->db->get('usov');

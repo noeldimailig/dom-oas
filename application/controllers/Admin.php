@@ -11,6 +11,7 @@ class Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('pagination');
         if (!is_logged_in()) {
             redirect('signin');
         }
@@ -845,6 +846,74 @@ class Admin extends CI_Controller
 
         $this->templates('usov/index', $data);
     }
+    // public function usov()
+    // {
+    //     $data['title'] = 'Unit, Section, Office to Visit - DepEd Online Appointment System';
+    //     $perPage = 10;
+    //     $config['base_url'] = base_url() . 'admin/usov';
+    //     $page = 0;
+    //     $data['csrf'] = array(
+    //         'name' => $this->security->get_csrf_token_name(),
+    //         'hash' => $this->security->get_csrf_hash()
+    //     );
+    //     if ($this->input->get('page')) {
+    //         $page = $this->input->get('page');
+    //     }
+
+    //     $start_index = 0;
+    //     if ($page != 0) {
+    //         $start_index = $perPage * ($page - 1);
+    //     }
+
+    //     $total_rows = 0;
+
+    //     $this->load->model('WorkInfo_model', 'work_model');
+    //     $this->load->model('Pagination_model', 'pagination_model');
+    //     if ($this->input->get('search') != null) {
+    //         $search = $this->input->get('search');
+    //         $data['usovs'] = $this->pagination_model->get_usovs($perPage, $start_index, $search, $is_count = 0);
+    //         $total_rows = $this->work_model->count_usovs($search);
+    //     } else {
+    //         $data['usovs'] = $this->pagination_model->get_usovs($perPage, $start_index, null, $is_count = 0);
+    //         $total_rows = $this->work_model->count_usovs(null);
+    //     }
+
+    //     $config['total_rows'] = $total_rows;
+
+    //     $config['per_page'] = $perPage;
+    //     $config['enable_query_strings'] = true;
+    //     $config['use_page_numbers'] = true;
+    //     $config['page_query_string'] = true;
+    //     $config['query_string_segment'] = 'page';
+    //     $config['reuse_query_string'] = true;
+    //     $config['full_tag_open'] = '<ul  class="pagination">';
+    //     $config['full_tag_close'] = '</ul' >
+    //         $config['first_link'] = 'First';
+    //     $config['last_link'] = 'Last';
+    //     $config['first_tag_open'] =  '<li  class="page-item"><spann class="page-link">';
+    //     $config['first_tag_close'] = '</span></li>';
+    //     $config['prev_link'] = '&laquo';
+    //     $config['prev_tag_open'] = '<li class="page-item"><span class="page-link">';
+
+    //     $config['prev_tag_close'] = '</span></li>';
+    //     $config['next_link'] = '&raquo';
+    //     $config['next_tag_open'] = '<li class="page-item"><span class="page-link">';
+    //     $config['next_tag_close'] = '</span></li>';
+    //     $config['last_tag_open'] = '<li class="page-item"><span class="page-link">';
+    //     $config['last_tag_close'] = '</span></li>';
+    //     $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link" href="#">';
+    //     $config['cur_tag_close'] = '</a></li>';
+    //     $config['num_tag_open'] = '<li class="page-item"><span class="page-link">';
+    //     $config['num_tag_close'] = '</span></li>';
+
+    //     $this->pagination->initialize($config);
+    //     // $this->data['page'] = $page;
+    //     // $this->data['links'] = $this->pagination->create_links();
+    //     $data['offset'] = $start_index;
+    //     $data['allrecords'] = $total_rows;
+    //     $data['number_page'] = $page;
+    //     $this->templates('usov/index', $data);
+    // }
 
     public function addusov()
     {

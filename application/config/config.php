@@ -462,7 +462,7 @@ $config['csrf_token_name'] = 'csrf_token_deped_appointment_system';
 $config['csrf_cookie_name'] = 'csrf_cookie_deped_appointment_system';
 $config['csrf_expire'] = 7200;
 $config['csrf_regenerate'] = TRUE;
-$config['csrf_exclude_uris'] = array('print-copy', 'export-spreadsheet', 'export-pdf');
+$config['csrf_exclude_uris'] = array('print-copy', 'export-spreadsheet', 'export-pdf', 'admin/usov');
 
 /*
 |--------------------------------------------------------------------------
@@ -530,3 +530,11 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+$config['email_smtp_host'] = 'smtp.gmail.com';
+$config['email_smtp_username'] = 'depedorminoas@gmail.com';
+$config['email_smtp_password'] = 'zfwnvflgeoecvgew';
+$config['email_smtp_secure'] = 'ssl';
+$config['email_smtp_port'] = 587;
+$config['email_from_address'] = 'depedorminoas@gmail.com';
+$config['email_from_name'] = 'DepED Oriental Mindoro';

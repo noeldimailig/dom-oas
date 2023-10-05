@@ -12,6 +12,14 @@
 
     <section class="section">
         <div class="row">
+            <?php
+            $flashdata = $this->session->flashdata();
+            if ($flashdata) {
+                foreach ($flashdata as $key => $value) {
+                    echo '<div class="alert alert-' . $key . '">' . $value . '</div>';
+                }
+            }
+            ?>
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-header">

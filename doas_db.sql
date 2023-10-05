@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:5555
--- Generation Time: May 10, 2023 at 10:37 PM
+-- Generation Time: Jun 22, 2023 at 10:44 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -36,20 +36,12 @@ CREATE TABLE `appointment_details` (
   `district_id` int DEFAULT NULL,
   `func_div_id` int DEFAULT NULL,
   `usov_id` int DEFAULT NULL,
-  `purpose` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `purpose` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `date_of_visit` date DEFAULT NULL,
   `time_slot_id` int DEFAULT NULL,
-  `status` varchar(10) COLLATE utf8mb4_bin DEFAULT NULL,
+  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
---
--- Dumping data for table `appointment_details`
---
-
-INSERT INTO `appointment_details` (`appointment_id`, `user_id`, `position_id`, `school_in_id`, `level_id`, `district_id`, `func_div_id`, `usov_id`, `purpose`, `date_of_visit`, `time_slot_id`, `status`, `created_at`) VALUES
-(1, 3, 1, 1, 1, 1, 1, 1, 'Sample', '2023-04-17', 1, 'booked', '2023-04-20 13:34:12'),
-(2, 3, 1, 1, 1, 1, 1, 17, 'Requesting for deped email', '2023-04-28', 5, 'booked', '2023-04-20 16:32:49');
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -59,8 +51,8 @@ INSERT INTO `appointment_details` (`appointment_id`, `user_id`, `position_id`, `
 
 CREATE TABLE `district` (
   `district_id` int NOT NULL,
-  `district` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `district` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `district`
@@ -94,8 +86,8 @@ INSERT INTO `district` (`district_id`, `district`) VALUES
 
 CREATE TABLE `functional_division` (
   `func_div_id` int NOT NULL,
-  `functional_division` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `functional_division` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `functional_division`
@@ -114,8 +106,8 @@ INSERT INTO `functional_division` (`func_div_id`, `functional_division`) VALUES
 
 CREATE TABLE `gender` (
   `gender_id` int NOT NULL,
-  `gender` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `gender` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `gender`
@@ -134,8 +126,8 @@ INSERT INTO `gender` (`gender_id`, `gender`) VALUES
 
 CREATE TABLE `level` (
   `level_id` int NOT NULL,
-  `level` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `level` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `level`
@@ -144,7 +136,8 @@ CREATE TABLE `level` (
 INSERT INTO `level` (`level_id`, `level`) VALUES
 (1, 'Elementary'),
 (2, 'Secondary'),
-(3, 'Not Applicable');
+(3, 'Not Applicable'),
+(6, 'Sample level updated');
 
 -- --------------------------------------------------------
 
@@ -154,8 +147,8 @@ INSERT INTO `level` (`level_id`, `level`) VALUES
 
 CREATE TABLE `position` (
   `position_id` int NOT NULL,
-  `position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `position` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `position`
@@ -233,9 +226,9 @@ INSERT INTO `position` (`position_id`, `position`) VALUES
 
 CREATE TABLE `school_id_name` (
   `school_in_id` int NOT NULL,
-  `school_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `school_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `school_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `school_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `school_id_name`
@@ -831,33 +824,32 @@ INSERT INTO `school_id_name` (`school_in_id`, `school_id`, `school_name`) VALUES
 
 CREATE TABLE `time_slot` (
   `time_slot_id` int NOT NULL,
-  `time_slot` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `time_slot` varchar(20) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `time_slot`
 --
 
 INSERT INTO `time_slot` (`time_slot_id`, `time_slot`) VALUES
-(1, '08:00:00'),
-(2, '08:30:00'),
-(3, '09:00:00'),
-(4, '09:30:00'),
-(5, '10:00:00'),
-(6, '10:30:00'),
-(7, '11:00:00'),
-(8, '11:30:00'),
-(9, '12:00:00'),
-(10, '12:30:00'),
-(11, '13:00:00'),
-(12, '13:30:00'),
-(13, '14:00:00'),
-(14, '14:30:00'),
-(15, '15:00:00'),
-(16, '15:30:00'),
-(17, '16:00:00'),
-(18, '16:30:00'),
-(19, '17:00:00');
+(1, '08:00 AM'),
+(2, '08:30 AM'),
+(3, '09:00 AM'),
+(4, '09:30 AM'),
+(5, '10:00 AM'),
+(6, '10:30 AM'),
+(7, '11:00 AM'),
+(8, '11:30 AM'),
+(9, '12:00 PM'),
+(10, '12:30 PM'),
+(11, '01:00 PM'),
+(12, '01:30 PM'),
+(13, '02:00 PM'),
+(14, '02:30 PM'),
+(15, '03:00 PM'),
+(16, '03:30 PM'),
+(17, '04:00 PM'),
+(20, '04:30 PM');
 
 -- --------------------------------------------------------
 
@@ -867,30 +859,26 @@ INSERT INTO `time_slot` (`time_slot_id`, `time_slot`) VALUES
 
 CREATE TABLE `user` (
   `user_id` int NOT NULL,
-  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `middle_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_bin NOT NULL,
-  `contact_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `middle_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `contact_no` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `gender_id` int DEFAULT NULL,
   `vul_sec_id` int DEFAULT NULL,
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `is_verified` int NOT NULL DEFAULT '0',
-  `user_type` varchar(10) COLLATE utf8mb4_bin NOT NULL DEFAULT 'user',
-  `profile_status` varchar(10) COLLATE utf8mb4_bin NOT NULL DEFAULT 'pending'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `user_type` varchar(10) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'user',
+  `profile_status` varchar(10) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'pending'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `last_name`, `first_name`, `middle_name`, `email`, `password`, `contact_no`, `gender_id`, `vul_sec_id`, `token`, `is_verified`, `user_type`, `profile_status`) VALUES
-(1, NULL, NULL, NULL, 'admin@deped.com', '$2y$04$z2VQE91hcvfakQ0aBh5Z1OsfUINOLOYiTefZb47lsorpzwBtTnJU.', NULL, 1, NULL, 'in1XZoL6Qm7Jhs5ABSqzgCepH', 1, 'admin', 'completed'),
-(2, NULL, NULL, NULL, 'pinelileth28@gmail.com', '$2y$04$z2VQE91hcvfakQ0aBh5Z1OsfUINOLOYiTefZb47lsorpzwBtTnJU.', NULL, 2, NULL, '7ba4NIJcHTFKYrL8DoEdA03Cz', 1, 'user', 'pending'),
-(3, 'Dimailig', 'Noel', 'Manalo', 'dimailignoel184@gmail.com', '$2y$04$LkNzHdeB/3gwC042J4H81OAukDgxYqFNDGT9dUW//idS2f3kNLK1C', '09670035910', 1, 5, 'nbIDpBfzWltmUeFd593gj0EY1', 1, 'user', 'pending'),
-(4, NULL, NULL, NULL, 'noel@gmail.com', '$2y$04$0yZxI4XJIgvCC897of3NHu7D3dXyf2iwdqiwl6zXfK2MYhsCwSUO6', NULL, 1, NULL, 'wKAGqkFWHslaD10ExQj562rdX', 1, 'user', 'pending'),
-(5, NULL, NULL, NULL, 'noel.dimailig@gmail.com', '$2y$04$QRgfKHeHHEzK/6TrHMnglu.2MOz6R8IoPs22OfRUcGOFqMHTPStwC', NULL, 1, NULL, 'JkP5AK8ohaRp0ymVWf2evTrQd', 0, 'user', 'pending');
+(1, NULL, NULL, NULL, 'depedorminoas@deped.gov.ph', '$2y$04$TM5d4j3LxM9bshUpNNZ.0OYW8B8nZPYLyGT8tnWHW8SLMazN9nrLS', NULL, NULL, NULL, '9z0By5wDl8v7d6jcpqXWskPhn', 1, 'admin', 'completed');
 
 -- --------------------------------------------------------
 
@@ -900,8 +888,8 @@ INSERT INTO `user` (`user_id`, `last_name`, `first_name`, `middle_name`, `email`
 
 CREATE TABLE `usov` (
   `usov_id` int NOT NULL,
-  `usov` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `usov` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `usov`
@@ -942,8 +930,8 @@ INSERT INTO `usov` (`usov_id`, `usov`) VALUES
 
 CREATE TABLE `vulnerable_sector` (
   `vul_sec_id` int NOT NULL,
-  `vulnerable_sector` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `vulnerable_sector` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vulnerable_sector`
@@ -1036,67 +1024,67 @@ ALTER TABLE `vulnerable_sector`
 -- AUTO_INCREMENT for table `appointment_details`
 --
 ALTER TABLE `appointment_details`
-  MODIFY `appointment_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `appointment_id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `district`
 --
 ALTER TABLE `district`
-  MODIFY `district_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `district_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `functional_division`
 --
 ALTER TABLE `functional_division`
-  MODIFY `func_div_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `func_div_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `gender`
 --
 ALTER TABLE `gender`
-  MODIFY `gender_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `gender_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `level`
 --
 ALTER TABLE `level`
-  MODIFY `level_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `level_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `position`
 --
 ALTER TABLE `position`
-  MODIFY `position_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `position_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `school_id_name`
 --
 ALTER TABLE `school_id_name`
-  MODIFY `school_in_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=582;
+  MODIFY `school_in_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=583;
 
 --
 -- AUTO_INCREMENT for table `time_slot`
 --
 ALTER TABLE `time_slot`
-  MODIFY `time_slot_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `time_slot_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `usov`
 --
 ALTER TABLE `usov`
-  MODIFY `usov_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `usov_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `vulnerable_sector`
 --
 ALTER TABLE `vulnerable_sector`
-  MODIFY `vul_sec_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `vul_sec_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
